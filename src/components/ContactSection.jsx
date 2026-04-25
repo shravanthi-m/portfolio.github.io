@@ -25,16 +25,6 @@ export const ContactSection = () => {
                     <span className="text-muted-foreground/30">|</span>
                     
                     <a 
-                        href="tel:+12482504641" 
-                        className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
-                    >
-                        <Phone className="h-5 w-5" />
-                        <span>+1 (248) 250-4641</span>
-                    </a>
-                    
-                    <span className="text-muted-foreground/30">|</span>
-                    
-                    <a 
                         href="https://www.linkedin.com/in/shravanthi-murugesan/" 
                         target="_blank"
                         rel="noopener noreferrer"

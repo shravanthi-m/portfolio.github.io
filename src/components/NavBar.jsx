@@ -13,19 +13,25 @@ const navItems = [
 export const NavBar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isDarkMode, setIsDarkMode] = useState(false);
+    const [isDarkMode, setIsDarkMode] = useState(true);
 
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 10);
         };
         window.addEventListener("scroll", handleScroll);
-        
-        // Load theme from localStorage
+        // Load theme from localStorage or default to dark
         const storedTheme = localStorage.getItem("theme");
-        if (storedTheme === "dark") {
+        if (storedTheme === "light") {
+            setIsDarkMode(false);
+            document.documentElement.classList.remove("dark");
+        } else {
+            // Default to dark mode
             setIsDarkMode(true);
             document.documentElement.classList.add("dark");
+            if (!storedTheme) {
+                localStorage.setItem("theme", "dark");
+            }
         }
         
         return () => {
@@ -50,12 +56,7 @@ export const NavBar = () => {
         isScrolled ? "py-3 bg-background/80 backdrop-blur-md shadow-xs" : "py-5"
     )}
     >
-        <div className="container flex items-center justify-between">
-            <a className="text-xl font-bold text-primary flex items-center" href="#nametitle">
-                <span className="relative z-10">
-                    <span className="text-glow text-foreground">Shravanthi Murugesan</span> Portfolio
-                </span>
-            </a>
+        <div className="container flex items-center justify-center md:justify-end">
             
             {/* Desktop Nav Items + Theme Toggle */}
             <div className="hidden md:flex items-center space-x-8">
