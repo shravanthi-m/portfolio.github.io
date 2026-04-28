@@ -16,7 +16,7 @@ export const NameTitle = () => {
                         <span className="text-gradient ml-2 opacity-0 animate-fade-in-delay-2">{" "}Murugesan</span>
                     </h1>
                     <p className="text-lg md:text-xl text-muted-foreground max-2-2xl mx-auto opacity-0 animate-fade-in-delay-3">
-                        intro para - 2 sentences like a catch
+                        {/* intro para - 2 sentences like a catch */}
                     </p>
                     <div className="pt-4 opacity-0 animate-fade-in-delay-4">
                         <a 

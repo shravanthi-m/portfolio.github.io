@@ -26,7 +26,7 @@ export const AboutMe = () => {
                     </div>
                 </div>
                 <div className="grid grid-cols-1 gap-6">
-                    <div className="gradient-border p-6 card-hover">
+                    {/* <div className="gradient-border p-6 card-hover">
                         <div className="flex items-start gap-4">
                             <div className="p-3 rounded-full bg-primary/10">
                                 <Code className="h-6 w-6 text-primary"/>
@@ -38,16 +38,18 @@ export const AboutMe = () => {
                                 </p>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                     <div className="gradient-border p-6 card-hover">
                         <div className="flex items-start gap-4">
                             <div className="p-3 rounded-full bg-primary/10">
                                 <User className="h-6 w-6 text-primary"/>
                             </div>
                             <div className="text-left">
-                                <h4 className="font-semibold text-lg">Web dev</h4>
+                                <h4 className="font-semibold text-lg">Graduate Teaching Assistant</h4>
+                                <p className="text-sm italic text-muted-foreground mb-2">University of Massachusetts Amherst</p>
                                 <p className="text-muted-foreground">
-                                    creating this this this small because you have a separate skills section
+                                    Evaluated assignments and exams for a graduate-level Algorithms for Data Science course. Provided feedback to students to support their understanding of mathematical proofs, algorithmic analysis and theoretical
+foundations in data science.
                                 </p>
                             </div>
                         </div>
@@ -58,9 +60,11 @@ export const AboutMe = () => {
                                 <Briefcase className="h-6 w-6 text-primary"/>
                             </div>
                             <div className="text-left">
-                                <h4 className="font-semibold text-lg">Web dev</h4>
+                                <h4 className="font-semibold text-lg">Research Intern</h4>
+                                <p className="text-sm italic text-muted-foreground mb-2">Jindo Technologies</p>
                                 <p className="text-muted-foreground">
-                                    creating this this this small because you have a separate skills section
+                                    Implemented a baseline model for edge detection in canine ultrasound videos using PyTorch. Conducted a literature review on edge detection techniques and explored self-supervised approaches to address limited
+                                    annotated data.
                                 </p>
                             </div>
                         </div>
