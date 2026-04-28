@@ -14,7 +14,7 @@ const projects = [
     {
     id: 2,
     title: "Fine-Grained Image Captioning · Adobe Research",
-    description: "Research project on improving the factual accuracy of vision-language model captions at the attribute level. Extending a multi-agent LLM verification pipeline and integrating GRPO-based reinforcement learning to replace multi-pass verification with a single-pass approach — reducing latency while maintaining descriptive accuracy.",
+    description: "Research project on improving the factual accuracy of vision-language model captions at the attribute level. Extending a multi-agent LLM verification pipeline and integrating GRPO-based reinforcement learning to replace multi-pass verification with a single-pass approach, reducing latency while maintaining descriptive accuracy.",
     image: "/projects/Fine-grained-image.png",
     tags: ["PyTorch", "Reinforcement Learning", "Computer Vision", "LLMs"],
     // link: ""   ← no public repo
@@ -33,7 +33,7 @@ const projects = [
   {
     id: 4,
     title: "Epilepsy Detection from EEG Signals",
-    description: "Deep learning model for seizure detection and epileptogenic zone localization from raw EEG signals. Explored non-linear representations (recurrence plots, reconstructed phase space) and trained attention-based architectures — achieving 94.99% precision for detection and 87.5% accuracy for localization. Published at IEEE ICCDS 2025.",
+    description: "Deep learning model for seizure detection and epileptogenic zone localization from raw EEG signals. Explored non-linear representations (recurrence plots, reconstructed phase space) and trained attention-based architectures, achieving 94.99% precision for detection and 87.5% accuracy for localization. Published at IEEE ICCDS 2025.",
     image: "/projects/eeg.png",
     tags: ["TensorFlow", "Keras", "Deep Learning", "Signal Processing"],
     demo: "https://ieeexplore.ieee.org/document/11208940",
@@ -42,7 +42,7 @@ const projects = [
   {
     id: 5,
     title: "Product Attribute Prediction",
-    description: "ML pipeline over a 2.2M-record Amazon dataset. Built end-to-end: data cleaning, text preprocessing, feature engineering, and model evaluation across regression and tree-based approaches. Most of the gains came from data work, not model choice — ~94% validation accuracy.",
+    description: "ML pipeline over a 2.2M-record Amazon dataset. Built end-to-end: data cleaning, text preprocessing, feature engineering, and model evaluation across regression and tree-based approaches. Most of the gains came from data work, not model choice ~94% validation accuracy.",
     image: "/projects/product-prediction.png",
     tags: ["Python", "Scikit-learn", "Pandas", "Feature Engineering"],
     link: "https://github.com/shravanthi-m/Product-predication",

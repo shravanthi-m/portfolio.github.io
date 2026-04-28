@@ -9,9 +9,10 @@ export const AboutMe = () => {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div className="space-y-6">
-                    <h3 className="text-2x font-semibold">about what i am- title</h3>
+                    {/* <h3 className="text-2x font-semibold">about what i am- title</h3> */}
                     <p className="text-muted-foreground">
-                        the content- what you're passionate about what tech you know broadly
+                        {/* the content- what you're passionate about what tech you know broadly */}
+                        I'm a Master's CS student at UMass Amherst working on fine-grained image captioning and RL-based inference optimization in collaboration with Adobe. My interests lie primarily in computer vision, reinforcement learning, and software development.
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
