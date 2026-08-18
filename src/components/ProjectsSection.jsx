@@ -13,6 +13,15 @@ const projects = [
   },
     {
     id: 2,
+    title: "EgoEye",
+    description: "Deterministic failure detector for robot demonstration data built at a Modal robotics hackathon. It combines temporal signal features from impulse detection, rainflow counting, and eye-diagram mask testing to flag fumbled human demos that look fine in video but would poison imitation learning training data. Instead of relying on model training or an LLM judge, we try a kinematic approach. A multimodal gate across wrist, gaze, and hand motion is used.",
+    image: "/projects/egoeye-image.png",
+    tags: ["Python", "Signal Processing", "Robotics"],
+    link: "https://github.com/shravanthi-m/EgoEye",
+    // demo: ""
+  },
+    {
+    id: 3,
     title: "Fine-Grained Image Captioning · Adobe Research",
     description: "Research project on improving the factual accuracy of vision-language model captions at the attribute level. Extending a multi-agent LLM verification pipeline and integrating GRPO-based reinforcement learning to replace multi-pass verification with a single-pass approach, reducing latency while maintaining descriptive accuracy.",
     image: "/projects/Fine-grained-image.png",
