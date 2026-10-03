@@ -36,6 +36,7 @@ const projects = [
     description: "Built an end-to-end robotic barista pipeline using an OpenRouter VLM and calibrated overhead camera to detect cups and ingredients, wrist-camera depth to estimate 3D grasp poses. Connected perception to robot-arm through Viam, enabling robot to pour liquids and shake the drink when shaker is detected.",
     video: "/projects/baristaBot_demo.MP4",
     tags: ["Robotics", "VLMs", "OpenRouter", "RGB-D", "Computer Vision"],
+    link: "https://github.com/shravanthi-m/ViamHack",
     },
     {
     id: 5,
