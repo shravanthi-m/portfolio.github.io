@@ -1,18 +1,82 @@
-# React + Vite
+# Shravanthi Murugesan | Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+My personal portfolio website showcasing my projects, research work, and technical interests in AI, robotics, computer vision, and ML.
 
-Currently, two official plugins are available:
+## Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Visit the deployed portfolio here:
 
-## React Compiler
+https://shravanthi-murugesan-portfolio.vercel.app
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## Overview
 
-Note: This will impact Vite dev & build performances.
+This portfolio is built with React and Vite to present a clean, responsive, and minimal personal brand website. It highlights:
 
-## Expanding the ESLint configuration
+- featured projects
+- research and applied ML work
+- technical skills and expertise
+- links to GitHub and external demos
+- a polished dark-mode aesthetic with modern UI styling
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Features
+
+- responsive single-page portfolio layout
+- project cards with media previews
+- GitHub and external-link integrations
+- polished visual design with reusable components
+- easy to extend for new projects and sections
+
+## Tech Stack
+
+- React
+- Vite
+- JavaScript
+- CSS
+- Lucide icons
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm
+
+### Installation
+
+```bash
+npm install
+```
+
+### Run locally
+
+```bash
+npm run dev
+```
+
+Then open the local URL shown in the terminal, typically:
+
+```bash
+http://localhost:5173
+```
+
+### Production build
+
+```bash
+npm run build
+```
+
+## Project Structure
+
+```bash
+src/
+  components/
+  pages/
+  assets/
+  lib/
+public/
+  projects/
+```
+
+## License
+
+This project is for personal portfolio use.

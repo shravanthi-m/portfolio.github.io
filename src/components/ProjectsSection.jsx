@@ -2,6 +2,7 @@ import { ExternalLink, Github } from "lucide-react";
 import { ArrowRight } from "lucide-react";
 
 const projects = [
+    
     {
     id: 1,
     title: "Autonomous Object Sorter",
@@ -29,8 +30,15 @@ const projects = [
     // link: ""   ← no public repo
     // demo: ""
   },
+  {
+    id: 4,
+    title: "Barista Bot",
+    description: "Built an end-to-end robotic barista pipeline using an OpenRouter VLM and calibrated overhead camera to detect cups and ingredients, then wrist-camera depth to estimate 3D grasp poses. The robot uses TF-based odometry and proportional control to handle ingredients, pour drinks, and shake cocktails.",
+    video: "/projects/baristaBot_demo.MP4",
+    tags: ["Robotics", "VLMs", "OpenRouter", "RGB-D", "Computer Vision"],
+    },
     {
-    id: 3,
+    id: 5,
     title: "Meal Planner",
     description: "A full-stack web app for building weekly meal plans. Integrates the Spoonacular and Fat Secret APIs for recipe data, with server-side caching, secure user authentication, dynamic shopping list generation, and a responsive UI. Built with React, Node.js, and MongoDB.",
     // image: "/projects/meal-planner.png",
@@ -41,7 +49,7 @@ const projects = [
   },
   
   {
-    id: 4,
+    id: 6,
     title: "Epilepsy Detection from EEG Signals",
     description: "Deep learning model for seizure detection and epileptogenic zone localization from raw EEG signals. Explored non-linear representations (recurrence plots, reconstructed phase space) and trained attention-based architectures, achieving 94.99% precision for detection and 87.5% accuracy for localization. Published at IEEE ICCDS 2025.",
     image: "/projects/eeg.png",
@@ -49,53 +57,17 @@ const projects = [
     demo: "https://ieeexplore.ieee.org/document/11208940",
     // demo: ""
   },
-  {
-    id: 5,
-    title: "Product Attribute Prediction",
-    description: "ML pipeline over a 2.2M-record Amazon dataset. Built end-to-end: data cleaning, text preprocessing, feature engineering, and model evaluation across regression and tree-based approaches. Most of the gains came from data work, not model choice ~94% validation accuracy.",
-    image: "/projects/product-prediction.png",
-    tags: ["Python", "Scikit-learn", "Pandas", "Feature Engineering"],
-    link: "https://github.com/shravanthi-m/Product-predication",
-    // demo: ""
-  },
+//   {
+//     id: 7,
+//     title: "Product Attribute Prediction",
+//     description: "ML pipeline over a 2.2M-record Amazon dataset. Built end-to-end: data cleaning, text preprocessing, feature engineering, and model evaluation across regression and tree-based approaches. Most of the gains came from data work, not model choice ~94% validation accuracy.",
+//     image: "/projects/product-prediction.png",
+//     tags: ["Python", "Scikit-learn", "Pandas", "Feature Engineering"],
+//     link: "https://github.com/shravanthi-m/Product-predication",
+//     // demo: ""
+//   },
   
 ];
-
-const VideoPlayer = ({ src, playbackRate = 1.5 }) => {
-    const videoRef = useRef(null);
-
-    useEffect(() => {
-        const video = videoRef.current;
-        if (!video) return;
-
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    video.play();
-                } else {
-                    video.pause();
-                }
-            },
-            { threshold: 0.5 } // Play when 50% visible
-        );
-
-        observer.observe(video);
-        return () => observer.disconnect();
-    }, []);
-
-    return (
-        <video
-            ref={videoRef}
-            src={src}
-            muted
-            loop
-            playsInline
-            webkit-playsinline="true"
-            onLoadedMetadata={(e) => e.target.playbackRate = playbackRate}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-        />
-    );
-};
 
 // add project screenshots/videos to projects folder inside public folder
 
@@ -113,8 +85,8 @@ export const ProjectsSection = () => {
                     {/* redo this */}
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {projects.map((project, key) => (
-                        <div key={key} className="group bg-card rounded-lg overflow-hidden shadow-xs card-hover flex flex-col">
+                    {projects.map((project) => (
+                        <div key={project.id} className="group bg-card rounded-lg overflow-hidden shadow-xs card-hover flex flex-col">
                             <div className="h-48 overflow-hidden bg-secondary/30">
                                 {project.video ? (
                                     <video
@@ -142,7 +114,7 @@ export const ProjectsSection = () => {
                             <div className="p-6 flex flex-col justify-between flex-grow">
                                 <div className="flex flex-wrap gap-2 mb-4">
                                     {project.tags.map((tag) => (
-                                        <span className="px-2 py-1 text-xs font-medium border border-foreground/10 rounded-full bg-secondary text-secondary-foreground">
+                                        <span key={tag} className="px-2 py-1 text-xs font-medium border border-foreground/10 rounded-full bg-secondary text-secondary-foreground">
                                             {tag}
                                         </span>
                                     ))}
