@@ -4,6 +4,14 @@ import { ArrowRight } from "lucide-react";
 const projects = [
     
     {
+    id: 0,
+    title: "Bookworm",
+    description: "A voice-controlled robot arm that reads and digitizes books hands-free. Flips pages, performs non-destructive scans of each page, and reads aloud or summarises the book on request.",
+    video: "/projects/Bookworm_demo.mov",
+    tags: ["Robotics", "Computer Vision", "OCR", "LLMs", "Python"],
+    link: "https://github.com/shravanthi-m/Bookworm",
+  },
+    {
     id: 1,
     title: "Autonomous Object Sorter",
     description: "A mobile robot that perceives, reasons, and sorts objects in real time. Uses YOLO for object detection, RGB-D sensing for depth, and TF-based odometry for navigation. Built a full perception-to-action loop with proportional control and goal-directed bin navigation in ROS.",
@@ -38,17 +46,17 @@ const projects = [
     tags: ["Robotics", "VLMs", "OpenRouter", "RGB-D", "Computer Vision"],
     link: "https://github.com/shravanthi-m/ViamHack",
     },
-    {
-    id: 5,
-    title: "Meal Planner",
-    description: "A full-stack web app for building weekly meal plans. Integrates the Spoonacular and Fat Secret APIs for recipe data, with server-side caching, secure user authentication, dynamic shopping list generation, and a responsive UI. Built with React, Node.js, and MongoDB.",
-    // image: "/projects/meal-planner.png",
-    video: "/projects/meal-planner.mp4",
-    tags: ["React", "Node.js", "MongoDB", "REST API"],
-    link: "https://github.com/shravanthi-m/MealPlanner",
-    // demo: ""   ← no live demo
-  },
-  
+//    {
+//    id: 5,
+//    title: "Meal Planner",
+//    description: "A full-stack web app for building weekly meal plans. Integrates the Spoonacular and Fat Secret APIs for recipe data, with server-side caching, secure user authentication, dynamic shopping list generation, and a responsive UI. Built with React, Node.js, and MongoDB.",
+//    // image: "/projects/meal-planner.png",
+//    video: "/projects/meal-planner.mp4",
+//    tags: ["React", "Node.js", "MongoDB", "REST API"],
+//    link: "https://github.com/shravanthi-m/MealPlanner",
+//    // demo: ""   ← no live demo
+//  },
+
   {
     id: 6,
     title: "Epilepsy Detection from EEG Signals",
