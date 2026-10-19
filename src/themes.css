@@ -124,8 +124,7 @@
 }
 .desk-logo-small { font: 400 30px/1 "Trebuchet MS", Tahoma, sans-serif; }
 .desk-logo-big { font: 700 64px/0.95 "Trebuchet MS", Tahoma, sans-serif; letter-spacing: -2px; }
-.desk-logo-big span { font-weight: 400; margin-left: 8px; }
-.desk-logo-tag { font: 700 17px/1.2 Tahoma, sans-serif; text-align: right; }
+.desk-logo-tag { font: 700 17px/1.2 Tahoma, sans-serif; text-align: right; margin-top: 6px; }
 
 /* windows */
 .win {

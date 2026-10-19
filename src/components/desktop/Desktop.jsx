@@ -42,7 +42,7 @@ const DesktopLogo = () => (
         <div>
             <div className="desk-logo-small">Shravanthi</div>
             <div className="desk-logo-big">
-                Murugesan<span>98</span>
+                Murugesan
             </div>
             <div className="desk-logo-tag">Portfolio Edition</div>
         </div>
@@ -179,7 +179,7 @@ const Taskbar = ({ windows, activeKey, onTaskClick, open }) => {
                 <div className="start-menu">
                     <div className="start-menu-banner">
                         <span>
-                            Shravanthi<b>98</b>
+                            Shravanthi
                         </span>
                     </div>
                     <div className="start-menu-items">
