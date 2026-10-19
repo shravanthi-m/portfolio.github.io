@@ -1,5 +1,25 @@
 import { Briefcase, Code, User } from "lucide-react";
 
+export const aboutBlurb =
+    "I'm a Master's CS student at UMass Amherst working on fine-grained image captioning and RL-based inference optimization in collaboration with Adobe. My interests lie primarily in computer vision, reinforcement learning, and software development.";
+
+export const experiences = [
+    {
+        role: "Graduate Teaching Assistant",
+        org: "University of Massachusetts Amherst",
+        icon: User,
+        description:
+            "Evaluated assignments and exams for a graduate-level Algorithms for Data Science course. Provided feedback to students to support their understanding of mathematical proofs, algorithmic analysis and theoretical foundations in data science.",
+    },
+    {
+        role: "Research Intern",
+        org: "Jindo Technologies",
+        icon: Briefcase,
+        description:
+            "Implemented a baseline model for edge detection in canine ultrasound videos using PyTorch. Conducted a literature review on edge detection techniques and explored self-supervised approaches to address limited annotated data.",
+    },
+];
+
 export const AboutMe = () => {
     return <section id="about" className="py-24 px-4 relative">
         {" "}
@@ -12,7 +32,7 @@ export const AboutMe = () => {
                     {/* <h3 className="text-2x font-semibold">about what i am- title</h3> */}
                     <p className="text-muted-foreground">
                         {/* the content- what you're passionate about what tech you know broadly */}
-                        I'm a Master's CS student at UMass Amherst working on fine-grained image captioning and RL-based inference optimization in collaboration with Adobe. My interests lie primarily in computer vision, reinforcement learning, and software development.
+                        {aboutBlurb}
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
@@ -40,36 +60,22 @@ export const AboutMe = () => {
                             </div>
                         </div>
                     </div> */}
-                    <div className="gradient-border p-6 card-hover">
-                        <div className="flex items-start gap-4">
-                            <div className="p-3 rounded-full bg-primary/10">
-                                <User className="h-6 w-6 text-primary"/>
-                            </div>
-                            <div className="text-left">
-                                <h4 className="font-semibold text-lg">Graduate Teaching Assistant</h4>
-                                <p className="text-sm italic text-muted-foreground mb-2">University of Massachusetts Amherst</p>
-                                <p className="text-muted-foreground">
-                                    Evaluated assignments and exams for a graduate-level Algorithms for Data Science course. Provided feedback to students to support their understanding of mathematical proofs, algorithmic analysis and theoretical
-foundations in data science.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="gradient-border p-6 card-hover">
-                        <div className="flex items-start gap-4">
-                            <div className="p-3 rounded-full bg-primary/10">
-                                <Briefcase className="h-6 w-6 text-primary"/>
-                            </div>
-                            <div className="text-left">
-                                <h4 className="font-semibold text-lg">Research Intern</h4>
-                                <p className="text-sm italic text-muted-foreground mb-2">Jindo Technologies</p>
-                                <p className="text-muted-foreground">
-                                    Implemented a baseline model for edge detection in canine ultrasound videos using PyTorch. Conducted a literature review on edge detection techniques and explored self-supervised approaches to address limited
-                                    annotated data.
-                                </p>
+                    {experiences.map(({ role, org, icon: Icon, description }) => (
+                        <div key={role} className="gradient-border p-6 card-hover">
+                            <div className="flex items-start gap-4">
+                                <div className="p-3 rounded-full bg-primary/10">
+                                    <Icon className="h-6 w-6 text-primary"/>
+                                </div>
+                                <div className="text-left">
+                                    <h4 className="font-semibold text-lg">{role}</h4>
+                                    <p className="text-sm italic text-muted-foreground mb-2">{org}</p>
+                                    <p className="text-muted-foreground">
+                                        {description}
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    ))}
                 </div>
             </div>
         </div>

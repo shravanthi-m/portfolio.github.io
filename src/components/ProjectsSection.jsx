@@ -1,7 +1,7 @@
 import { ExternalLink, Github } from "lucide-react";
 import { ArrowRight } from "lucide-react";
 
-const projects = [
+export const projects = [
     
     {
     id: 0,
@@ -64,6 +64,7 @@ const projects = [
     image: "/projects/eeg.png",
     tags: ["TensorFlow", "Keras", "Deep Learning", "Signal Processing"],
     demo: "https://ieeexplore.ieee.org/document/11208940",
+    demoLabel: "Paper",
     // demo: ""
   },
 //   {
@@ -95,7 +96,7 @@ export const ProjectsSection = () => {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {projects.map((project) => (
-                        <div key={project.id} className="group bg-card rounded-lg overflow-hidden shadow-xs card-hover flex flex-col">
+                        <div key={project.id} className="project-card group bg-card rounded-lg overflow-hidden shadow-xs card-hover flex flex-col">
                             <div className="h-48 overflow-hidden bg-secondary/30">
                                 {project.video ? (
                                     <video

@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useTheme } from "@/lib/theme";
+import { ThemePicker } from "./ThemePicker";
 
 const navItems = [
     {name: "Home", href: "#nametitle"},
@@ -13,67 +15,43 @@ const navItems = [
 export const NavBar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isDarkMode, setIsDarkMode] = useState(true);
+    const { isDarkMode, toggleDarkMode } = useTheme();
 
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 10);
         };
         window.addEventListener("scroll", handleScroll);
-        // Load theme from localStorage or default to dark
-        const storedTheme = localStorage.getItem("theme");
-        if (storedTheme === "light") {
-            setIsDarkMode(false);
-            document.documentElement.classList.remove("dark");
-        } else {
-            // Default to dark mode
-            setIsDarkMode(true);
-            document.documentElement.classList.add("dark");
-            if (!storedTheme) {
-                localStorage.setItem("theme", "dark");
-            }
-        }
-        
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
 
-    const toggleTheme = () => {
-        if (isDarkMode) {
-            document.documentElement.classList.remove("dark");
-            localStorage.setItem("theme", "light");
-            setIsDarkMode(false);
-        } else {
-            document.documentElement.classList.add("dark");
-            localStorage.setItem("theme", "dark");
-            setIsDarkMode(true);
-        }
-    };
-
-    return ( 
-    <nav className={cn("fixed w-full z-40 transition-all duration-300", 
+    return (
+    <nav className={cn("fixed w-full z-40 transition-all duration-300",
         isScrolled ? "py-3 bg-background/80 backdrop-blur-md shadow-xs" : "py-5"
     )}
     >
         <div className="container flex items-center justify-center md:justify-end">
-            
+
             {/* Desktop Nav Items + Theme Toggle */}
             <div className="hidden md:flex items-center space-x-8">
                 {navItems.map((item, key) => (
-                    <a 
-                        key={key} 
-                        href={item.href} 
-                        className="text-foreground/80 hover:text-primary transition-colors duration-300"
+                    <a
+                        key={key}
+                        href={item.href}
+                        className="nav-link text-foreground/80 hover:text-primary transition-colors duration-300"
                     >
                         {item.name}
                     </a>
                 ))}
-                
+
+                <ThemePicker />
+
                 {/* Theme Toggle Button */}
                 <div className="relative group">
                     <button
-                        onClick={toggleTheme}
+                        onClick={toggleDarkMode}
                         className={cn(
                             "p-2 rounded-full transition-all duration-300",
                             "hover:bg-foreground/10"
@@ -93,16 +71,16 @@ export const NavBar = () => {
                     </div>
                 </div>
             </div>
-            
+
             {/* Mobile Menu Button */}
-            <button 
+            <button
                 onClick={() => setIsMenuOpen((prev) => !prev)}
                 className="md:hidden p-2 text-foreground z-50"
                 aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-            > 
-                {isMenuOpen ? <X size={24} /> : <Menu size={24} />} 
+            >
+                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
-            
+
             {/* Mobile Menu */}
             <div className={cn(
                     "fixed inset-0 bg-background/95 backdrop-blur-md z-40 flex flex-col items-center justify-center",
@@ -110,21 +88,21 @@ export const NavBar = () => {
                     isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
                 )}
             >
-                <div className="flex flex-col space-y-8 text-xl">
+                <div className="flex flex-col items-center space-y-8 text-xl">
                     {navItems.map((item, key) => (
-                        <a 
-                            key={key} 
-                            href={item.href} 
+                        <a
+                            key={key}
+                            href={item.href}
                             className="text-foreground/80 hover:text-primary transition-colors duration-300"
                             onClick={() => setIsMenuOpen(false)}
                         >
                             {item.name}
                         </a>
                     ))}
-                    
+
                     {/* Theme Toggle in Mobile Menu */}
                     <button
-                        onClick={toggleTheme}
+                        onClick={toggleDarkMode}
                         className="flex items-center justify-center gap-2 text-foreground/80 hover:text-primary transition-colors duration-300"
                     >
                         {isDarkMode ? (
@@ -137,6 +115,7 @@ export const NavBar = () => {
                             </>
                         )}
                     </button>
+                    <ThemePicker />
                 </div>
             </div>
         </div>

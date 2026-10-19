@@ -1,5 +1,11 @@
 import { Mail, Phone, Linkedin, Github } from "lucide-react";
 
+export const CONTACT = {
+    email: "shravanthim22@gmail.com",
+    linkedin: "https://www.linkedin.com/in/shravanthi-murugesan/",
+    github: "https://github.com/shravanthi-m",
+};
+
 export const ContactSection = () => {
     return (
         <section id="contact" className="py-24 px-4 relative bg-secondary/30">
@@ -14,18 +20,18 @@ export const ContactSection = () => {
                 {/* Horizontal Contact Links */}
                 <div className="flex flex-wrap items-center justify-center gap-6 text-lg">
                     <a 
-                        href="mailto:shravanthim22@gmail.com" 
+                        href={`mailto:${CONTACT.email}`} 
                         target = "_blank"
                         className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
                     >
                         <Mail className="h-5 w-5" />
-                        <span>shravanthim22@gmail.com</span>
+                        <span>{CONTACT.email}</span>
                     </a>
                     
                     <span className="text-muted-foreground/30">|</span>
                     
                     <a 
-                        href="https://www.linkedin.com/in/shravanthi-murugesan/" 
+                        href={CONTACT.linkedin} 
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
@@ -37,7 +43,7 @@ export const ContactSection = () => {
                     <span className="text-muted-foreground/30">|</span>
                     
                     <a 
-                        href="https://github.com/shravanthi-m" 
+                        href={CONTACT.github} 
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 
-const skills = [
+export const skills = [
     // Languages
     {name: "Python", category: "Languages"},
     {name: "C", category: "Languages"},
@@ -51,7 +51,7 @@ const skills = [
     {name: "Gazebo", category: "Robotics"},
 ];
 
-const categories = ["All", "Frontend", "Backend", "ML", "DevOps", "Robotics"];
+export const categories = ["All", "Frontend", "Backend", "ML", "DevOps", "Robotics"];
 
 export const SkillsSection = () => {
     const [activeCategory, setActiveCategory] = useState("All");
@@ -93,7 +93,7 @@ export const SkillsSection = () => {
                     {uniqueSkills.map((skill, key) => (
                         <span
                             key={key}
-                            className="px-4 py-2 rounded-full bg-card border border-foreground/10 text-foreground hover:border-primary hover:text-primary transition-all duration-300 shadow-sm hover:shadow-md card-hover"
+                            className="skill-chip px-4 py-2 rounded-full bg-card border border-foreground/10 text-foreground hover:border-primary hover:text-primary transition-all duration-300 shadow-sm hover:shadow-md card-hover"
                         >
                             {skill.name}
                         </span>

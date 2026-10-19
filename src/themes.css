@@ -1,0 +1,413 @@
+/* ==========================================================================
+   Theme layer — everything selected by <html data-theme="..."> lives here.
+   Unlayered on purpose so it wins over Tailwind utilities.
+   ========================================================================== */
+
+/* ==========================================================================
+   RETRO DESKTOP — Pastel 98 layout
+   ========================================================================== */
+[data-retro="true"] body { overflow: hidden; }
+
+.desktop-shell {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: Tahoma, "MS Sans Serif", Geneva, Verdana, sans-serif;
+  font-size: 12px;
+  color: #000;
+  text-align: left;
+}
+.desktop {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* desktop icons */
+.desk-icons {
+  position: absolute;
+  top: 12px;
+  left: 8px;
+  bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 14px 6px;
+  z-index: 1;
+}
+.desk-icon {
+  width: 84px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 2px;
+  color: #fff;
+  cursor: default;
+}
+.desk-icon-label {
+  font-size: 12px;
+  line-height: 1.25;
+  text-align: center;
+  padding: 0 2px;
+}
+.desk-icon.selected .desk-icon-label {
+  background: var(--title-a);
+  outline: 1px dotted #fff;
+  text-shadow: none;
+}
+.desk-icon.selected .desk-icon-img { filter: brightness(0.7) sepia(0.6) hue-rotate(200deg) saturate(3); }
+
+.desk-hint {
+  position: absolute;
+  top: 18px;
+  left: 104px;
+  z-index: 9000;
+  width: 178px;
+  padding: 7px 22px 8px 9px;
+  background: #ffffe1;
+  color: #000;
+  border: 1px solid #000;
+  border-radius: 6px;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.25);
+  font-size: 12px;
+  line-height: 1.35;
+  animation: hint-pop 0.35s ease-out, hint-nudge 2.4s ease-in-out 0.6s 3;
+}
+.desk-hint p { margin-top: 2px; }
+/* tail pointing at the icons */
+.desk-hint::before,
+.desk-hint::after {
+  content: "";
+  position: absolute;
+  top: 14px;
+  border: 8px solid transparent;
+  border-left: 0;
+}
+.desk-hint::before { left: -9px; border-right-color: #000; }
+.desk-hint::after { left: -7px; border-right-color: #ffffe1; }
+.desk-hint-close {
+  position: absolute;
+  top: 3px;
+  right: 4px;
+  width: 15px;
+  height: 14px;
+  font-size: 9px;
+  line-height: 12px;
+  border: 1px solid #888;
+  background: #ffffe1;
+}
+.desk-hint-close:hover { background: #fff; }
+@keyframes hint-pop {
+  from { opacity: 0; transform: translateX(-6px) scale(0.96); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes hint-nudge {
+  0%, 100% { transform: none; }
+  50% { transform: translateX(-4px); }
+}
+
+/* decorations */
+.desk-cd {
+  position: absolute;
+  top: 28px;
+  right: 40px;
+  width: 120px;
+  height: 120px;
+  animation: cd-spin 4.8s steps(12) infinite;
+}
+@keyframes cd-spin { to { rotate: 360deg; } }
+.desk-logo {
+  position: absolute;
+  right: 40px;
+  bottom: 32px;
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  color: #fff;
+  pointer-events: none;
+}
+.desk-logo-small { font: 400 30px/1 "Trebuchet MS", Tahoma, sans-serif; }
+.desk-logo-big { font: 700 64px/0.95 "Trebuchet MS", Tahoma, sans-serif; letter-spacing: -2px; }
+.desk-logo-big span { font-weight: 400; margin-left: 8px; }
+.desk-logo-tag { font: 700 17px/1.2 Tahoma, sans-serif; text-align: right; }
+
+/* windows */
+.win {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  min-width: 260px;
+  min-height: 160px;
+  resize: both;
+  overflow: hidden;
+}
+.win.maximized {
+  left: 0 !important;
+  top: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  resize: none;
+}
+.win-titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  flex-shrink: 0;
+  user-select: none;
+  touch-action: none;
+}
+.win-title { display: flex; align-items: center; gap: 4px; min-width: 0; }
+.win-controls { display: flex; gap: 2px; flex-shrink: 0; }
+.win-btn { display: grid; place-items: center; }
+.win-body { flex: 1; min-height: 0; display: flex; flex-direction: column; margin-top: 2px; }
+
+/* window contents */
+.w-app { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 3px; }
+.w-pad { padding: 6px; }
+.w-menubar { display: flex; flex-wrap: wrap; padding: 1px 0; }
+.w-menubar span { padding: 1px 6px; cursor: default; }
+.w-menubar span:hover { background: var(--title-a); color: #fff; }
+.w-field { background: #fff; padding: 2px; }
+.w-notepad {
+  flex: 1;
+  overflow: auto;
+  padding: 6px 10px;
+  font-family: "VT323", "Courier New", monospace;
+  font-size: 19px;
+  line-height: 1.15;
+}
+.w-notepad p { margin: 0 0 2px; white-space: pre-wrap; }
+.w-notepad-big { font-size: 1.3em; }
+.w-link { color: #0000ee; text-decoration: underline; cursor: pointer; }
+.w-link:hover { color: #d6309b; }
+.w-caret { animation: blink 1s steps(1) infinite; margin-left: 2px; }
+
+.w-addressbar { display: flex; align-items: center; gap: 6px; padding: 2px; }
+.w-address { flex: 1; display: flex; align-items: center; gap: 4px; padding: 2px 4px; }
+.win-body { container-type: inline-size; }
+.w-projects {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  padding: 12px;
+  align-content: start;
+}
+@container (min-width: 620px) {
+  .w-projects { grid-template-columns: 1fr 1fr; }
+}
+.w-project { display: flex; flex-direction: column; padding: 3px; }
+.w-project-media { height: 220px; background: #000; flex-shrink: 0; }
+.w-project-media video,
+.w-project-media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.w-project-body { flex: 1; display: flex; flex-direction: column; gap: 6px; padding: 10px 10px 8px; line-height: 1.45; }
+.w-project-body h3 { font: 700 15px/1.3 "Trebuchet MS", Tahoma, sans-serif; color: var(--title-a); }
+.w-project-body .w-tags { margin-top: 2px; }
+.w-project-links { margin-top: auto; padding-top: 6px; display: flex; justify-content: flex-end; gap: 6px; }
+.w-btn { display: inline-flex; align-items: center; justify-content: center; gap: 5px; }
+.w-projects-more { grid-column: 1 / -1; justify-self: center; margin: 2px 0 6px; }
+.w-statusbar { display: flex; gap: 2px; flex-shrink: 0; }
+.w-statusbar span { flex: 1; padding: 2px 6px; }
+
+.w-groupbox { margin: 0; padding: 8px 10px 10px; line-height: 1.45; min-width: 0; }
+.w-groupbox legend { padding: 0 4px; font-weight: 700; }
+.w-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+.w-tag { background: #fff; padding: 1px 6px; }
+.w-actions { display: flex; justify-content: flex-end; gap: 6px; flex-shrink: 0; }
+.w-btn { min-width: 75px; padding: 4px 12px; text-align: center; color: #000; cursor: default; }
+
+.w-tabs { display: flex; flex-wrap: wrap; padding-left: 2px; position: relative; z-index: 1; }
+.w-tab { padding: 3px 10px; margin-top: 2px; margin-right: -1px; border-radius: 3px 3px 0 0; cursor: default; }
+.w-tab.active { margin-top: 0; padding-bottom: 5px; margin-bottom: -2px; position: relative; z-index: 2; }
+.w-tabpanel { flex: 1; min-height: 0; padding: 10px; display: flex; flex-direction: column; }
+.w-tabpanel .w-groupbox { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.w-listbox {
+  flex: 1;
+  overflow: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 3px 10px;
+  padding: 6px;
+  align-content: start;
+  min-height: 100px;
+}
+.w-list-item { display: flex; align-items: center; gap: 6px; padding: 1px 3px; }
+.w-list-item i { width: 10px; height: 10px; flex-shrink: 0; background: linear-gradient(135deg, #ff8fc7, #7cc8ff); outline: 1px solid #000; }
+.w-list-item:hover { background: var(--title-a); color: #fff; }
+
+.w-empty { flex: 1; display: grid; place-items: center; color: #666; }
+
+/* taskbar */
+.taskbar {
+  position: relative;
+  z-index: 10;
+  height: 36px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 3px;
+}
+.start-btn { display: flex; align-items: center; gap: 5px; height: 28px; padding: 0 8px 0 5px; font-weight: 700; font-size: 13px; }
+.taskbar-tasks { flex: 1; min-width: 0; display: flex; gap: 3px; overflow: hidden; }
+.taskbar-btn {
+  flex: 0 1 170px;
+  min-width: 36px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 6px;
+  font-size: 12px;
+  text-align: left;
+}
+.tray { display: flex; align-items: center; gap: 6px; height: 28px; padding: 0 8px 0 4px; font-size: 12px; white-space: nowrap; }
+.tray .theme-picker-btn { padding: 3px; border-radius: 0; }
+.tray .theme-picker-btn svg { width: 16px; height: 16px; }
+.tray .theme-picker-label { font-size: 12px; }
+.start-menu {
+  position: absolute;
+  bottom: 36px;
+  left: 2px;
+  display: flex;
+  min-width: 230px;
+  text-align: left;
+}
+.start-menu-banner {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  padding: 8px 4px;
+  font-size: 20px;
+  color: #fff;
+}
+.start-menu-items { flex: 1; padding: 2px; }
+.start-menu-item { display: flex; align-items: center; gap: 10px; width: 100%; padding: 5px 12px; font-size: 13px; text-align: left; }
+.start-menu-heading { padding: 4px 12px 2px; font-size: 11px; opacity: 0.7; }
+.start-menu-sub { padding-left: 24px; }
+.start-menu-sep { margin: 2px 4px; border: 0; }
+
+.shutdown-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: #000;
+  color: #ff8c1a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "VT323", monospace;
+  font-size: clamp(28px, 5vw, 52px);
+  line-height: 1.15;
+  cursor: pointer;
+}
+.shutdown-hint { margin-top: 2rem; font-size: 18px; color: #888; }
+
+/* phones: windows fill the screen, decorations shrink */
+@media (max-width: 640px) {
+  .win { resize: none; }
+  .desk-cd { width: 64px; height: 64px; top: 16px; right: 16px; }
+  .desk-logo { right: 14px; bottom: 16px; transform: scale(0.5); transform-origin: bottom right; }
+}
+
+/* ==========================================================================
+   PASTEL 98 — soft blue desktop, pink taskbar, film grain + RGB fringing
+   ========================================================================== */
+:root[data-theme="win98"] {
+  --background: 214 62% 74%;
+  --foreground: 0 0% 0%;
+  --card: 258 16% 85%;
+  --primary: 233 54% 49%;
+  --primary-foreground: 0 0% 100%;
+  --border: 255 10% 59%;
+
+  --face: #d8d4e3;
+  --hi: #ffffff;
+  --lt: #eeebf5;
+  --sh: #8f8aa6;
+  --dk: #2d2a42;
+  --title-a: #3b4ac2;
+  --title-b: #a3c4f8;
+  --title-in-a: #9893ad;
+  --title-in-b: #d4d0e2;
+  --task: #f7c4de;
+  --task-hi: #fff1f8;
+  --task-sh: #c98aab;
+  --task-dk: #6e3d58;
+  --raised: inset -1px -1px var(--dk), inset 1px 1px var(--hi), inset -2px -2px var(--sh), inset 2px 2px var(--lt);
+  --sunken: inset -1px -1px var(--hi), inset 1px 1px var(--sh), inset -2px -2px var(--lt), inset 2px 2px var(--dk);
+  --t-raised: inset -1px -1px var(--task-dk), inset 1px 1px var(--hi), inset -2px -2px var(--task-sh), inset 2px 2px var(--task-hi);
+  --t-sunken: inset -1px -1px var(--hi), inset 1px 1px var(--task-sh), inset -2px -2px var(--task-hi), inset 2px 2px var(--task-dk);
+  --fringe: -1px 0 rgba(255, 70, 170, 0.85), 1px 0 rgba(50, 200, 255, 0.85);
+}
+[data-theme="win98"] .desktop {
+  background:
+    radial-gradient(ellipse 60% 50% at 75% 15%, rgba(255, 255, 255, 0.28), transparent 70%),
+    radial-gradient(ellipse 50% 40% at 15% 90%, rgba(255, 180, 220, 0.25), transparent 70%),
+    #8fb5e6;
+}
+/* film grain over everything, like an old CRT photo */
+[data-theme="win98"] .desktop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 99999;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+[data-theme="win98"] .desk-icon-label { text-shadow: var(--fringe), 0 1px 2px rgba(0, 0, 0, 0.35); }
+[data-theme="win98"] .desk-icon-img { filter: drop-shadow(-1px 0 rgba(255, 70, 170, 0.55)) drop-shadow(1px 0 rgba(50, 200, 255, 0.55)); }
+[data-theme="win98"] .desk-cd { filter: drop-shadow(-3px 0 rgba(255, 70, 170, 0.5)) drop-shadow(3px 0 rgba(50, 200, 255, 0.5)); }
+[data-theme="win98"] .desk-logo { text-shadow: -3px 0 rgba(255, 70, 170, 0.8), 3px 0 rgba(50, 210, 255, 0.8); }
+[data-theme="win98"] .desk-logo svg { filter: drop-shadow(-3px 0 rgba(255, 70, 170, 0.6)) drop-shadow(3px 0 rgba(50, 210, 255, 0.6)); }
+
+[data-theme="win98"] .win { background: var(--face); box-shadow: var(--raised); padding: 3px; }
+[data-theme="win98"] .win-titlebar {
+  height: 20px;
+  padding: 0 2px 0 4px;
+  background: linear-gradient(90deg, var(--title-a), var(--title-b));
+  color: #fff;
+  font-weight: 700;
+}
+[data-theme="win98"] .win.inactive .win-titlebar { background: linear-gradient(90deg, var(--title-in-a), var(--title-in-b)); color: #f1eef8; }
+[data-theme="win98"] .win-btn { width: 16px; height: 14px; background: var(--face); box-shadow: var(--raised); color: #000; }
+[data-theme="win98"] .win-btn:active { box-shadow: var(--sunken); }
+[data-theme="win98"] .win-btn-close { margin-left: 2px; }
+[data-theme="win98"] .w-field { box-shadow: var(--sunken); }
+[data-theme="win98"] .w-statusbar span { box-shadow: inset -1px -1px var(--hi), inset 1px 1px var(--sh); }
+[data-theme="win98"] .w-groupbox { border: 1px solid var(--sh); box-shadow: 1px 1px 0 var(--hi), inset 1px 1px 0 var(--hi); }
+[data-theme="win98"] .w-tag { box-shadow: var(--sunken); }
+[data-theme="win98"] .w-project { background: var(--face); box-shadow: var(--raised); }
+[data-theme="win98"] .w-btn { background: var(--face); box-shadow: var(--raised); }
+[data-theme="win98"] .w-btn:active { box-shadow: var(--sunken); }
+[data-theme="win98"] .w-btn:disabled { color: var(--sh); text-shadow: 1px 1px var(--hi); }
+[data-theme="win98"] .w-tab { background: var(--face); box-shadow: inset 1px 1px var(--hi), inset -1px 0 var(--dk), inset -2px 0 var(--sh); }
+[data-theme="win98"] .w-tabpanel { box-shadow: var(--raised); }
+
+[data-theme="win98"] .taskbar { background: var(--task); box-shadow: inset 0 1px var(--task-hi), inset 0 2px #fff; }
+[data-theme="win98"] .start-btn,
+[data-theme="win98"] .taskbar-btn { background: var(--task); box-shadow: var(--t-raised); color: #000; }
+[data-theme="win98"] .start-btn.active { box-shadow: var(--t-sunken); }
+[data-theme="win98"] .taskbar-btn.active {
+  box-shadow: var(--t-sunken);
+  font-weight: 700;
+  background: repeating-conic-gradient(#fde3f0 0 25%, #fff 0 50%) 0 0 / 2px 2px;
+}
+[data-theme="win98"] .tray { box-shadow: var(--t-sunken); }
+[data-theme="win98"] .start-menu { background: var(--face); box-shadow: var(--raised); padding: 3px; }
+[data-theme="win98"] .start-menu-banner { background: linear-gradient(0deg, var(--title-a), #f39bc8); }
+[data-theme="win98"] .start-menu-item:hover { background: var(--title-a); color: #fff; }
+[data-theme="win98"] .start-menu-sep { border-top: 1px solid var(--sh); border-bottom: 1px solid var(--hi); }
+[data-theme="win98"] .theme-menu { background: var(--face); border: 0; border-radius: 0; box-shadow: var(--raised); padding: 3px; color: #000; }
+[data-theme="win98"] .theme-menu-item { border-radius: 0; }
+[data-theme="win98"] .theme-menu-item:hover { background: var(--title-a); color: #fff; }
