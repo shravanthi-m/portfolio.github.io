@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { useTheme, THEMES } from "@/lib/theme";
+import { useTheme } from "@/lib/theme";
 import { CONTACT } from "../ContactSection";
-import { ThemePicker } from "../ThemePicker";
+import { ThemeSwitch } from "../ThemeSwitch";
 import {
     NotepadIcon, FolderIcon, ToolboxIcon, MailIcon, BinIcon, GlobeIcon, LinkedInIcon,
     WindowsFlag,
@@ -128,7 +128,7 @@ const ShutdownScreen = ({ onClose }) =>
     );
 
 const Taskbar = ({ windows, activeKey, onTaskClick, open }) => {
-    const { theme, setTheme } = useTheme();
+    const { setTheme } = useTheme();
     const [startOpen, setStartOpen] = useState(false);
     const [shutdown, setShutdown] = useState(false);
     const time = useClock();
@@ -171,8 +171,9 @@ const Taskbar = ({ windows, activeKey, onTaskClick, open }) => {
                 })}
             </div>
 
+            <ThemeSwitch className="taskbar-btn taskbar-switch" />
+
             <div className="tray">
-                <ThemePicker placement="up" />
                 <span className="tray-clock">{time}</span>
             </div>
 
@@ -194,19 +195,15 @@ const Taskbar = ({ windows, activeKey, onTaskClick, open }) => {
                             </button>
                         ))}
                         <hr className="start-menu-sep" />
-                        <div className="start-menu-heading">Change theme</div>
-                        {THEMES.filter((t) => t.id !== theme.id).map((t) => (
-                            <button
-                                key={t.id}
-                                className="start-menu-item start-menu-sub"
-                                onClick={() => {
-                                    setTheme(t.id);
-                                    setStartOpen(false);
-                                }}
-                            >
-                                <span className="text-lg">{t.emoji}</span> {t.label}
-                            </button>
-                        ))}
+                        <button
+                            className="start-menu-item"
+                            onClick={() => {
+                                setTheme("original");
+                                setStartOpen(false);
+                            }}
+                        >
+                            <span className="text-xl">✨</span> Switch to Modern view
+                        </button>
                         <hr className="start-menu-sep" />
                         <button
                             className="start-menu-item"

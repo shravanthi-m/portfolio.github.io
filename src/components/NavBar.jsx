@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTheme } from "@/lib/theme";
-import { ThemePicker } from "./ThemePicker";
+import { ThemeSwitch } from "./ThemeSwitch";
 
 const navItems = [
     {name: "Home", href: "#nametitle"},
@@ -46,7 +46,7 @@ export const NavBar = () => {
                     </a>
                 ))}
 
-                <ThemePicker />
+                <ThemeSwitch className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/50 text-sm text-primary hover:bg-primary/10 transition-colors duration-300" />
 
                 {/* Theme Toggle Button */}
                 <div className="relative group">
@@ -115,7 +115,7 @@ export const NavBar = () => {
                             </>
                         )}
                     </button>
-                    <ThemePicker />
+                    <ThemeSwitch className="flex items-center justify-center gap-2 px-4 py-2 rounded-full border border-primary/50 text-primary hover:bg-primary/10 transition-colors duration-300" />
                 </div>
             </div>
         </div>

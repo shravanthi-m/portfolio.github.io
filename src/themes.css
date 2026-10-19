@@ -267,9 +267,8 @@
   text-align: left;
 }
 .tray { display: flex; align-items: center; gap: 6px; height: 28px; padding: 0 8px 0 4px; font-size: 12px; white-space: nowrap; }
-.tray .theme-picker-btn { padding: 3px; border-radius: 0; }
-.tray .theme-picker-btn svg { width: 16px; height: 16px; }
-.tray .theme-picker-label { font-size: 12px; }
+.theme-switch-icon { width: 16px; height: 16px; flex-shrink: 0; }
+.taskbar-switch { flex: 0 0 auto; font-weight: 700; }
 .start-menu {
   position: absolute;
   bottom: 36px;
@@ -403,6 +402,4 @@
 [data-theme="win98"] .start-menu-banner { background: linear-gradient(0deg, var(--title-a), #f39bc8); }
 [data-theme="win98"] .start-menu-item:hover { background: var(--title-a); color: #fff; }
 [data-theme="win98"] .start-menu-sep { border-top: 1px solid var(--sh); border-bottom: 1px solid var(--hi); }
-[data-theme="win98"] .theme-menu { background: var(--face); border: 0; border-radius: 0; box-shadow: var(--raised); padding: 3px; color: #000; }
-[data-theme="win98"] .theme-menu-item { border-radius: 0; }
-[data-theme="win98"] .theme-menu-item:hover { background: var(--title-a); color: #fff; }
+[data-theme="win98"] .taskbar-switch:active { box-shadow: var(--t-sunken); }
