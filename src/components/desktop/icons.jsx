@@ -64,18 +64,6 @@ export const ComputerIcon = (p) => (
     </Svg>
 );
 
-export const BinIcon = (p) => (
-    <Svg {...p}>
-        <rect x="6" y="6" width="20" height="3" fill={K} />
-        <rect x="13" y="4" width="6" height="2" fill={K} />
-        <path d="M8 9h16l-2 19H10z" fill={K} />
-        <path d="M9 10h14l-1.8 17H10.8z" fill="#cfe3f4" />
-        {[12, 16, 20].map((x) => (
-            <rect key={x} x={x} y="12" width="1" height="13" fill="#7f9db9" />
-        ))}
-    </Svg>
-);
-
 export const GlobeIcon = (p) => (
     <Svg {...p}>
         <circle cx="16" cy="16" r="12" fill={K} />

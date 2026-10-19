@@ -219,14 +219,3 @@ export const EmailApp = () => {
         </div>
     );
 };
-
-export const RecycleBinApp = () => (
-    <div className="w-app">
-        <MenuBar items={["File", "Edit", "View", "Help"]} />
-        <div className="w-field w-empty">This folder is empty.</div>
-        <StatusBar>
-            <span>0 object(s)</span>
-            <span>0 regrets</span>
-        </StatusBar>
-    </div>
-);

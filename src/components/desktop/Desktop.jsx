@@ -4,11 +4,11 @@ import { useTheme } from "@/lib/theme";
 import { CONTACT } from "../ContactSection";
 import { ThemeSwitch } from "../ThemeSwitch";
 import {
-    NotepadIcon, FolderIcon, ToolboxIcon, MailIcon, BinIcon, GlobeIcon, LinkedInIcon,
+    NotepadIcon, FolderIcon, ToolboxIcon, MailIcon, GlobeIcon, LinkedInIcon,
     WindowsFlag,
 } from "./icons";
 import {
-    WelcomeApp, AboutApp, ProjectsApp, SkillsApp, EmailApp, RecycleBinApp,
+    WelcomeApp, AboutApp, ProjectsApp, SkillsApp, EmailApp,
 } from "./apps";
 
 /* ---------- what can be opened ---------- */
@@ -19,7 +19,6 @@ const APPS = {
     projects: { title: "C:\\My Projects", Icon: FolderIcon, w: 900, h: 620, App: ProjectsApp },
     skills: { title: "Skills Properties", Icon: ToolboxIcon, w: 540, h: 430, App: SkillsApp },
     email: { title: "Email Me", Icon: MailIcon, w: 440, h: 230, App: EmailApp, dialog: true },
-    recycle: { title: "Recycle Bin", Icon: BinIcon, w: 380, h: 240, App: RecycleBinApp },
 };
 
 const appFor = (key) => APPS[key];
@@ -33,7 +32,6 @@ const DESKTOP_ICONS = [
     { key: "email", label: "Email Me", Icon: MailIcon },
     { key: "github", label: "GitHub", Icon: GlobeIcon, href: CONTACT.github },
     { key: "linkedin", label: "LinkedIn", Icon: LinkedInIcon, href: CONTACT.linkedin },
-    { key: "recycle", label: "Recycle Bin", Icon: BinIcon },
 ];
 
 /* ---------- decorations ---------- */

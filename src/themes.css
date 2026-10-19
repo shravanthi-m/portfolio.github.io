@@ -240,7 +240,6 @@
 .w-email-address { user-select: all; }
 .w-email .w-actions { flex-wrap: wrap; justify-content: center; }
 .w-email .w-btn { min-width: 0; flex: 1 1 80px; }
-.w-empty { flex: 1; display: grid; place-items: center; color: #666; }
 
 /* taskbar */
 .taskbar {
