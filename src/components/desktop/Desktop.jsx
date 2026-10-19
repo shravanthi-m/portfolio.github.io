@@ -14,7 +14,7 @@ import {
 /* ---------- what can be opened ---------- */
 
 const APPS = {
-    welcome: { title: "Welcome.txt - Notepad", Icon: NotepadIcon, w: 480, h: 340, App: WelcomeApp, dialog: true, phoneBottom: true },
+    welcome: { title: "Welcome.txt - Notepad", Icon: NotepadIcon, w: 480, h: 340, App: WelcomeApp },
     about: { title: "About_Me.txt - Notepad", Icon: NotepadIcon, w: 560, h: 460, App: AboutApp },
     projects: { title: "C:\\My Projects", Icon: FolderIcon, w: 900, h: 620, App: ProjectsApp },
     skills: { title: "Skills Properties", Icon: ToolboxIcon, w: 540, h: 430, App: SkillsApp },
@@ -243,7 +243,7 @@ export const Desktop = () => {
     const open = (key, props = {}) => {
         setWindows((ws) => {
             if (ws.some((w) => w.key === key)) return ws;
-            const { w, h, dialog, phoneBottom } = appFor(key);
+            const { w, h, dialog } = appFor(key);
             const vw = window.innerWidth, vh = window.innerHeight - 40;
             const n = ws.length;
             const width = Math.min(w, vw - 24);
@@ -257,11 +257,7 @@ export const Desktop = () => {
                     h: height,
                     // start clear of the icon column + tip balloon
                     x: Math.max(8, Math.min(vw - width - 8, (vw > 760 ? 310 : 150) + n * 32)),
-                    y: !(isPhone() && dialog)
-                        ? Math.max(8, Math.min(vh - height - 8, 40 + n * 28))
-                        : phoneBottom
-                            ? vh - height - 12 // sits below the icon column so both stay visible
-                            : (vh - height) / 3,
+                    y: isPhone() && dialog ? (vh - height) / 3 : Math.max(8, Math.min(vh - height - 8, 40 + n * 28)),
                     z: zTop.current + 1,
                     min: false,
                     // small dialogs stay dialog-sized on phones; everything else fills the screen
@@ -287,7 +283,8 @@ export const Desktop = () => {
     };
 
     useEffect(() => {
-        open("welcome");
+        // on phones windows open full screen, so leave the desktop visible and let the hint do the talking
+        if (!isPhone()) open("welcome");
         const t = setTimeout(() => setShowHint(true), 900);
         return () => clearTimeout(t);
     }, []);

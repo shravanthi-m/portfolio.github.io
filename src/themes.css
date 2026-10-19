@@ -309,14 +309,6 @@
 @media (max-width: 640px) {
   .win { resize: none; }
   .desk-logo { right: 14px; bottom: 16px; transform: scale(0.5); transform-origin: bottom right; }
-  /* icons in rows across the top, tip underneath, Welcome window below that */
-  .desk-icons { right: 8px; bottom: auto; flex-direction: row; gap: 8px 2px; }
-  .desk-icon { width: calc((100vw - 24px) / 4); }
-  .desk-hint { top: 152px; left: 12px; width: auto; right: 12px; }
-  .desk-hint::before,
-  .desk-hint::after { top: auto; left: 28px; border: 8px solid transparent; border-top: 0; }
-  .desk-hint::before { top: -9px; border-bottom-color: #000; }
-  .desk-hint::after { top: -7px; border-bottom-color: #ffffe1; }
 }
 
 /* ==========================================================================
