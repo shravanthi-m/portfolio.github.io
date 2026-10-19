@@ -4,7 +4,7 @@ import { projects } from "../ProjectsSection";
 import { skills, categories } from "../SkillsSection";
 import { CONTACT } from "../ContactSection";
 import { ExternalLink, Github } from "lucide-react";
-import { FolderIcon } from "./icons";
+import { FolderIcon, MailIcon } from "./icons";
 
 const MenuBar = ({ items }) => (
     <div className="w-menubar">
@@ -37,7 +37,7 @@ export const WelcomeApp = ({ open }) => (
                 → <button className="w-link" onClick={() => open("about")}>About_Me.txt</button>
             </p>
             <p>
-                → <a className="w-link" href={`mailto:${CONTACT.email}`}>say hi</a>
+                → <button className="w-link" onClick={() => open("email")}>say hi</button>
                 <span className="w-caret">|</span>
             </p>
         </div>
@@ -172,6 +172,49 @@ export const SkillsApp = ({ close }) => {
                 <button className="w-btn" onClick={close}>OK</button>
                 <button className="w-btn" onClick={close}>Cancel</button>
                 <button className="w-btn" disabled>Apply</button>
+            </div>
+        </div>
+    );
+};
+
+/* ---------- Email: mailto alone fails when no mail app is set up, so offer options ---------- */
+
+const copyText = async (text) => {
+    try {
+        await navigator.clipboard.writeText(text);
+        return true;
+    } catch {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        const ok = document.execCommand("copy");
+        ta.remove();
+        return ok;
+    }
+};
+
+export const EmailApp = () => {
+    const [copied, setCopied] = useState(false);
+    const gmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${CONTACT.email}`;
+    const outlook = `https://outlook.live.com/mail/0/deeplink/compose?to=${CONTACT.email}`;
+    return (
+        <div className="w-app w-pad w-email">
+            <div className="w-email-head">
+                <MailIcon size={32} />
+                <div>
+                    <b>Send me an email!</b>
+                    <p>Where would you like to email me from?</p>
+                </div>
+            </div>
+            <div className="w-field w-input w-email-address">{CONTACT.email}</div>
+            <div className="w-actions">
+                <a className="w-btn" href={`mailto:${CONTACT.email}`}>Mail app</a>
+                <a className="w-btn" href={gmail} target="_blank" rel="noopener noreferrer">Gmail</a>
+                <a className="w-btn" href={outlook} target="_blank" rel="noopener noreferrer">Outlook</a>
+                <button className="w-btn" onClick={async () => setCopied(await copyText(CONTACT.email))}>
+                    {copied ? "Copied!" : "Copy address"}
+                </button>
             </div>
         </div>
     );

@@ -8,7 +8,7 @@ import {
     WindowsFlag,
 } from "./icons";
 import {
-    WelcomeApp, AboutApp, ProjectsApp, SkillsApp, RecycleBinApp,
+    WelcomeApp, AboutApp, ProjectsApp, SkillsApp, EmailApp, RecycleBinApp,
 } from "./apps";
 
 /* ---------- what can be opened ---------- */
@@ -18,50 +18,25 @@ const APPS = {
     about: { title: "About_Me.txt - Notepad", Icon: NotepadIcon, w: 560, h: 460, App: AboutApp },
     projects: { title: "C:\\My Projects", Icon: FolderIcon, w: 900, h: 620, App: ProjectsApp },
     skills: { title: "Skills Properties", Icon: ToolboxIcon, w: 540, h: 430, App: SkillsApp },
+    email: { title: "Email Me", Icon: MailIcon, w: 440, h: 230, App: EmailApp, dialog: true },
     recycle: { title: "Recycle Bin", Icon: BinIcon, w: 380, h: 240, App: RecycleBinApp },
 };
 
 const appFor = (key) => APPS[key];
 
-const openLink = (href) => {
-    if (href.startsWith("mailto:")) window.location.href = href;
-    else window.open(href, "_blank", "noopener,noreferrer");
-};
+const openLink = (href) => window.open(href, "_blank", "noopener,noreferrer");
 
 const DESKTOP_ICONS = [
     { key: "about", label: "About_Me.txt", Icon: NotepadIcon },
     { key: "projects", label: "My Projects", Icon: FolderIcon },
     { key: "skills", label: "Skills.exe", Icon: ToolboxIcon },
-    { key: "email", label: "Email Me", Icon: MailIcon, href: `mailto:${CONTACT.email}` },
+    { key: "email", label: "Email Me", Icon: MailIcon },
     { key: "github", label: "GitHub", Icon: GlobeIcon, href: CONTACT.github },
     { key: "linkedin", label: "LinkedIn", Icon: LinkedInIcon, href: CONTACT.linkedin },
     { key: "recycle", label: "Recycle Bin", Icon: BinIcon },
 ];
 
 /* ---------- decorations ---------- */
-
-// rainbow pixel CD, computed once on a 20×20 grid
-const CD_PIXELS = (() => {
-    const out = [];
-    const colors = ["#ff8fc7", "#ffd34d", "#9be37a", "#7cc8ff", "#b69cff", "#ffffff"];
-    for (let y = 0; y < 20; y++)
-        for (let x = 0; x < 20; x++) {
-            const dx = x - 9.5, dy = y - 9.5, r = Math.hypot(dx, dy);
-            if (r > 9.6 || r < 1.8) continue;
-            let fill;
-            if (r > 8.7 || (r < 3.2 && r > 2.4)) fill = "#3b3b5c";
-            else if (r < 2.4) fill = "#d8d8e8";
-            else fill = colors[Math.floor(((Math.atan2(dy, dx) + Math.PI) / (2 * Math.PI)) * 12) % colors.length];
-            out.push(<rect key={`${x}-${y}`} x={x} y={y} width="1" height="1" fill={fill} />);
-        }
-    return out;
-})();
-
-const PixelCD = () => (
-    <svg className="desk-cd" viewBox="0 0 20 20" shapeRendering="crispEdges" aria-hidden="true">
-        {CD_PIXELS}
-    </svg>
-);
 
 const DesktopLogo = () => (
     <div className="desk-logo" aria-hidden="true">
@@ -272,7 +247,7 @@ export const Desktop = () => {
     const open = (key, props = {}) => {
         setWindows((ws) => {
             if (ws.some((w) => w.key === key)) return ws;
-            const { w, h } = appFor(key);
+            const { w, h, dialog } = appFor(key);
             const vw = window.innerWidth, vh = window.innerHeight - 40;
             const n = ws.length;
             const width = Math.min(w, vw - 24);
@@ -286,10 +261,11 @@ export const Desktop = () => {
                     h: height,
                     // start clear of the icon column + tip balloon
                     x: Math.max(8, Math.min(vw - width - 8, (vw > 760 ? 310 : 150) + n * 32)),
-                    y: Math.max(8, Math.min(vh - height - 8, 40 + n * 28)),
+                    y: isPhone() && dialog ? (vh - height) / 3 : Math.max(8, Math.min(vh - height - 8, 40 + n * 28)),
                     z: zTop.current + 1,
                     min: false,
-                    max: isPhone(),
+                    // small dialogs stay dialog-sized on phones; everything else fills the screen
+                    max: isPhone() && !dialog,
                 },
             ];
         });
@@ -325,7 +301,6 @@ export const Desktop = () => {
                     if (e.target === e.currentTarget) setSelectedIcon(null);
                 }}
             >
-                <PixelCD />
                 <DesktopLogo />
 
                 <div className="desk-icons">
