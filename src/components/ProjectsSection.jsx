@@ -7,7 +7,7 @@ const projects = [
     id: 0,
     title: "Bookworm",
     description: "A voice-controlled robot arm that reads and digitizes books hands-free. Flips pages, performs non-destructive scans of each page, and reads aloud or summarises the book on request.",
-    video: "/projects/Bookworm_demo.mov",
+    video: "/projects/Bookworm_demo.mp4",
     tags: ["Robotics", "Computer Vision", "OCR", "LLMs", "Python"],
     link: "https://github.com/shravanthi-m/Bookworm",
   },
