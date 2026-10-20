@@ -76,6 +76,15 @@ export const projects = [
     demoLabel: "Paper",
     // demo: ""
   },
+  {
+    id: 8,
+    title: "Water Connect",
+    description: "A way to text, send voice notes and even ask an AI quick questions when there's no cell signal, like at a desert festival. Instead of cell towers, each phone passes the message along to nearby phones, hopping from person to person until it reaches the right one. Built as a live simulation of six phones with a map that shows each message's route as it travels.",
+    image: "/projects/water-connect-image.png",
+    tags: ["TypeScript", "React", "Python", "Mesh Networking", "AI"],
+    link: "https://github.com/shravanthi-m/TeamWater",
+    demo: "https://water-connect-nu.vercel.app/",
+  },
 //   {
 //     id: 7,
 //     title: "Product Attribute Prediction",
