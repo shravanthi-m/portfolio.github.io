@@ -2,7 +2,7 @@ import { ExternalLink, Github } from "lucide-react";
 import { ArrowRight } from "lucide-react";
 
 export const projects = [
-    
+
     {
     id: 0,
     title: "Bookworm",
@@ -28,6 +28,15 @@ export const projects = [
     tags: ["Python", "Signal Processing", "Robotics"],
     link: "https://github.com/shravanthi-m/EgoEye",
     // demo: ""
+  },
+    {
+    id: 7,
+    title: "Robologue",
+    description: "AI that watches someone do a hands-on task often says a step is done when it isn't, like calling a wheel attached when it's only resting on the axle. Robologue gives the AI a memory of its past mistakes and a checklist of what to look for, so it double-checks the right moments in the video before signing off on each step. Built around real first-person videos of people assembling toys and cooking.",
+    image: "/projects/robologue-image.png",
+    tags: ["Python", "AI Agents", "MongoDB Atlas", "Computer Vision", "Egocentric Video"],
+    link: "https://github.com/shravanthi-m/Robologue",
+    demo: "https://robologue.vercel.app/",
   },
     {
     id: 3,

@@ -1,9 +1,16 @@
-import { Briefcase, Code, User } from "lucide-react";
+import { Briefcase, Code, Microscope, User } from "lucide-react";
 
 export const aboutBlurb =
     "I'm a Master's CS student at UMass Amherst working on fine-grained image captioning and RL-based inference optimization in collaboration with Adobe. My interests lie primarily in computer vision, reinforcement learning, and software development.";
 
 export const experiences = [
+    {
+        role: "Research Extern",
+        org: "Adobe · Jan 2026 – May 2026",
+        icon: Microscope,
+        description:
+            "Research extern with Adobe through UMass Amherst's 698DS course. Worked on reducing hallucinations for fine-grained image captioning using vision-language models. Fine-tuned Qwen2.5-VL-7B with GRPO-based RL on a SLURM cluster, turning a multi-pass verification pipeline into a single pass. Designed SimLoss, a contrastive (InfoNCE) objective that pushes captions to keep enough visual detail to recover the original image, and added object-level recall targeting using YOLO detections. Our best method reached 78.61% coverage on IIW-400, the highest among all approaches we evaluated.",
+    },
     {
         role: "Graduate Teaching Assistant",
         org: "University of Massachusetts Amherst",
