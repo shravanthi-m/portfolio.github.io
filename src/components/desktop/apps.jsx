@@ -5,6 +5,7 @@ import { skills, categories } from "../SkillsSection";
 import { CONTACT } from "../ContactSection";
 import { ExternalLink, Github } from "lucide-react";
 import { FolderIcon, MailIcon } from "./icons";
+import { ProjectMedia } from "../ProjectMedia";
 
 const MenuBar = ({ items }) => (
     <div className="w-menubar">
@@ -68,19 +69,7 @@ export const AboutApp = () => (
 const ProjectCard = ({ p }) => (
     <article className="w-project">
         <div className="w-field w-project-media">
-            {p.video ? (
-                <video
-                    src={p.video}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    webkit-playsinline="true"
-                    onLoadedMetadata={(e) => (e.target.playbackRate = 1.5)}
-                />
-            ) : (
-                <img src={p.image} alt={p.title} loading="lazy" />
-            )}
+            <ProjectMedia project={p} />
         </div>
         <div className="w-project-body">
             <h3>{p.title}</h3>
@@ -108,7 +97,10 @@ const ProjectCard = ({ p }) => (
     </article>
 );
 
-export const ProjectsApp = () => (
+export const ProjectsApp = () => {
+    // phones hide scrollbars, so show a cue until the visitor has scrolled a bit
+    const [scrolled, setScrolled] = useState(false);
+    return (
     <div className="w-app">
         <MenuBar items={["File", "Edit", "View", "Go", "Favorites", "Help"]} />
         <div className="w-addressbar">
@@ -117,20 +109,31 @@ export const ProjectsApp = () => (
                 <FolderIcon size={16} /> C:\My Projects
             </div>
         </div>
-        <div className="w-field w-projects">
-            {projects.map((p) => (
-                <ProjectCard key={p.id} p={p} />
-            ))}
-            <a className="w-btn w-projects-more" href={CONTACT.github} target="_blank" rel="noopener noreferrer">
-                See more on my GitHub…
-            </a>
+        <div className="w-projects-wrap">
+            <div
+                className="w-field w-projects"
+                onScroll={(e) => !scrolled && e.currentTarget.scrollTop > 80 && setScrolled(true)}
+            >
+                {projects.map((p) => (
+                    <ProjectCard key={p.id} p={p} />
+                ))}
+                <a className="w-btn w-projects-more" href={CONTACT.github} target="_blank" rel="noopener noreferrer">
+                    See more on my GitHub…
+                </a>
+            </div>
+            {!scrolled && (
+                <div className="w-scroll-cue" aria-hidden="true">
+                    ▼ Scroll for all {projects.length} projects
+                </div>
+            )}
         </div>
         <StatusBar>
             <span>{projects.length} object(s)</span>
             <span>My Computer</span>
         </StatusBar>
     </div>
-);
+    );
+};
 
 /* ---------- Control panel style skills ---------- */
 

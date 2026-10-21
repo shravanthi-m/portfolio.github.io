@@ -1,5 +1,6 @@
 import { ExternalLink, Github } from "lucide-react";
 import { ArrowRight } from "lucide-react";
+import { ProjectMedia } from "./ProjectMedia";
 
 export const projects = [
 
@@ -116,22 +117,10 @@ export const ProjectsSection = () => {
                     {projects.map((project) => (
                         <div key={project.id} className="project-card group bg-card rounded-lg overflow-hidden shadow-xs card-hover flex flex-col">
                             <div className="h-48 overflow-hidden bg-secondary/30">
-                                {project.video ? (
-                                    <video
-                                        src={project.video}
-                                        autoPlay
-                                        muted
-                                        loop
-                                        playsInline
-                                        webkit-playsinline="true"
-                                        onLoadedMetadata={(e) => e.target.playbackRate = 1.5}
+                                {project.video || project.image ? (
+                                    <ProjectMedia
+                                        project={project}
                                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                    />
-                                ) : project.image ? (
-                                    <img 
-                                        src={project.image} 
-                                        alt={project.title} 
-                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
                                     />
                                 ) : (
                                     <div className="w-full h-full flex items-center justify-center text-muted-foreground">
